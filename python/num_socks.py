@@ -2,11 +2,17 @@ import math
 
 
 def sockMerchant(n, ar):
-    sort = sorted(ar)
+    socks = {}
     pairs = 0
-    for i in range(math.floor(n / 2)):
-        if sort[i * 2] == sort[(i * 2) + 1]:
-            pairs += 1
+
+    for sock_num in ar:
+        if sock_num in socks:
+            socks[sock_num] += 1
+        else:
+            socks[sock_num] = 1
+
+    for count in socks.values():
+        pairs += math.floor(count / 2)
 
     return pairs
 
