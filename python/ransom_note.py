@@ -1,13 +1,19 @@
 def checkMagazine(magazine, note):
-    m_s = set(magazine)
-    n_s = set(note)
+    available = {}
+    for word in magazine:
+        if word in available:
+            available[word]+=1
+        else:
+            available[word]=1
 
-    if len(n_s & m_s) == len(note):
-        print("Yes")
-        return
+    for word in note:
+        if word not in available or available[word] <= 0:
+            print("No")
+            return
 
-    print("No")
+        available[word] -= 1
 
+    print("Yes")
 
 if __name__ == "__main__":
     checkMagazine(
