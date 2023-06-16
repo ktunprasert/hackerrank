@@ -1,9 +1,5 @@
 def rotLeft(a: list[int], d: int):
-    while d > 0:
-        fst = a.pop(0)
-        a = [*a, fst]
-        d -= 1
-    return a
+    return [*a[d:], *a[:d]]
 
 
 if __name__ == "__main__":
