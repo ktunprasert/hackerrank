@@ -1,28 +1,20 @@
 from math import factorial
+from collections import defaultdict
 
 
 def sherlockAndAnagrams(s: str) -> int:
-    i = 1
-    found = {}
+    found = defaultdict(int)
     count = 0
-    while i <= len(s) - 1:
-        for j in range(0, len(s)):
+    for i in range(1, len(s)):
+        for j in range(len(s) - i + 1):
             sub = s[j : j + i]
-            sub_key = sorted(sub).__str__()
-
-            if len(sub) < i:
-                continue
-
-            if sub_key in found:
-                found[sub_key] += 1
-            else:
-                found[sub_key] = 1
-        i += 1
+            sub_key = str(sorted(sub))
+            found[sub_key] += 1
 
     for v in found.values():
         if v < 2:
             continue
-        count += int(factorial(v)) / (factorial(2) * factorial(v - 2))
+        count += factorial(v) / (factorial(2) * factorial(v - 2))
 
     return int(count)
 
